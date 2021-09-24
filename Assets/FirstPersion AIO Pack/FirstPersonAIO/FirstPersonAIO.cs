@@ -94,7 +94,7 @@ public class FirstPersonAIO : MonoBehaviour {
     
 
     public bool autoCrosshair = false;
-    public bool drawStaminaMeter = true;
+    public bool drawStaminaMeter = false;
     float smoothRef;
     Image StaminaMeter;
     Image StaminaMeterBG;
@@ -117,8 +117,8 @@ public class FirstPersonAIO : MonoBehaviour {
     public bool canHoldJump;
     bool jumpInput;
     bool didJump;
-    public bool useStamina = true;
-    public float staminaDepletionSpeed = 5f;
+    public bool useStamina = false;
+    public float staminaDepletionSpeed = 0.0f;
     public float staminaLevel = 50;
     public float speed;
     public float staminaInternal;
