@@ -7,19 +7,27 @@ using UnityEngine;
 public class Menu : MonoBehaviour
 {
     private GameObject fpgo;
+    private FirstPersonAIO FirstPersonController;
+
+    private GameObject CanvasGO1;
     private Canvas CanvasObject;
-    public FirstPersonAIO FirstPersonController;
+    
 
     // Start is called before the first frame update
     void Start()
     {
 
-        //fpgo = GameObject.Find("FirstPersonAIO");
+        fpgo = GameObject.Find("FirstPersonAIO");
+        CanvasGO1 = GameObject.Find("Canvas");
 
-        CanvasObject = GetComponent<Canvas>();
+        FirstPersonController = fpgo.GetComponent<FirstPersonAIO>();
+        CanvasObject = CanvasGO1.GetComponent<Canvas>();
+
+
+
         CanvasObject.enabled = !CanvasObject.enabled;
 
-        //FirstPersonController = fpgo.GetComponent<FirstPersonAIO>();
+        
         //FirstPersonController = GetComponent<FirstPersonAIO>();
         //FirstPersonController.controllerPauseState = false;
     }
