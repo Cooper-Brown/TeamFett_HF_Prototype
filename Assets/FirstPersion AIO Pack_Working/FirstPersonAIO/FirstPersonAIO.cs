@@ -113,8 +113,8 @@ public class FirstPersonAIO : MonoBehaviour {
     public KeyCode sprintKey = KeyCode.LeftShift;
     public float sprintSpeed = 8f;
     public float jumpPower = 5f;
-    public bool canJump = true;
-    public bool canHoldJump;
+    public bool canJump = false;
+    public bool canHoldJump = false;
     bool jumpInput;
     bool didJump;
     public bool useStamina = true;
@@ -202,7 +202,7 @@ public class FirstPersonAIO : MonoBehaviour {
 
     #region Audio Settings
 
-    public bool enableAudioSFX = true;
+    public bool enableAudioSFX = false;
     public float Volume = 5f;
     public AudioClip jumpSound = null;
     public AudioClip landSound = null;

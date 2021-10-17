@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 695e03433b37c674ebc4bf333513eabc
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - FirstPerson: {instanceID: 0}
+  - mainMenu: {fileID: 1403641790779700, guid: 9ff6d95a272e2d4499558631f2197578, type: 3}
+  - assistanceMenu: {instanceID: 0}
+  - navigationMenu: {instanceID: 0}
+  - settingsMenu: {instanceID: 0}
+  - popularExhibitsMenu: {instanceID: 0}
+  - guidanceSystem: {instanceID: 0}
+  - frameSystem: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
