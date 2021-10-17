@@ -34,7 +34,7 @@ public class Menu3 : MonoBehaviour
         //currentState.SetActive(false);
         VRTable = VRTableGO.GetComponent<Table>();
         
-        guidanceSystem.SetActive(false);
+        guidanceSystem.SetActive(true);
         frameSystem.SetActive(false);
     }
 
