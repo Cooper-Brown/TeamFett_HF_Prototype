@@ -7,10 +7,11 @@ public class Menu3 : MonoBehaviour
     public FirstPersonAIO FirstPerson;
     private Canvas CanvasObject;
 
-    public enum MenuStates { Main, Assistance, Navigation, Settings, PopularExhibits };
+    public enum MenuStates { HandRay, Main, Assistance, Navigation, Settings, PopularExhibits };
     private GameObject currentState;
 
 
+    public GameObject handRayMenu;
     public GameObject mainMenu;
     public GameObject assistanceMenu;
     public GameObject navigationMenu;
@@ -18,7 +19,7 @@ public class Menu3 : MonoBehaviour
     public GameObject popularExhibitsMenu;
 
     public GameObject guidanceSystem;
-    public GameObject frameSystem;
+    //public GameObject frameSystem;
     public GameObject VRTableGO;
 
     private Table VRTable;
@@ -29,13 +30,13 @@ public class Menu3 : MonoBehaviour
     {
         CanvasObject = GetComponent<Canvas>();
         CanvasObject.enabled = !CanvasObject.enabled;
-        currentState = mainMenu;
+        currentState = handRayMenu;
         menuActive = true;
         //currentState.SetActive(false);
         VRTable = VRTableGO.GetComponent<Table>();
         
-        guidanceSystem.SetActive(true);
-        frameSystem.SetActive(false);
+        guidanceSystem.SetActive(false);
+        //frameSystem.SetActive(false);
     }
 
     void Update()
@@ -43,17 +44,17 @@ public class Menu3 : MonoBehaviour
         if (Input.GetButtonDown("Menu") && VRTable.glassesOn() && !menuActive)
         {
             menuActive = true;
-            OnBackToMainMenu();
+            OnBackTohandRayMenu();
             CanvasObject.enabled = true;
             //menuActive = !menuActive;
-            //mainMenu.SetActive(menuActive);
+            //handRayMenu.SetActive(menuActive);
             FirstPerson.ControllerPause();
             
         }
 
         if (Input.GetButtonDown("AirTap") && menuActive)
         {
-            OnBackToMainMenu();
+            OnBackTohandRayMenu();
             CanvasObject.enabled = false;
             FirstPerson.ControllerPause();
             menuActive = false;
@@ -76,6 +77,9 @@ public class Menu3 : MonoBehaviour
 
         switch (menu)
         {
+            case MenuStates.HandRay:
+                newState = handRayMenu;
+                break;
             case MenuStates.Main:
                 newState = mainMenu;
                 break;
@@ -92,11 +96,11 @@ public class Menu3 : MonoBehaviour
                 newState = popularExhibitsMenu;
                 break;
             default:
-                newState = mainMenu;
+                newState = handRayMenu;
                 break;
         }
 
-        if (currentState != mainMenu)
+        if (currentState != handRayMenu)
         {
             currentState.SetActive(false);
         }
@@ -107,7 +111,7 @@ public class Menu3 : MonoBehaviour
         
         currentState = newState;
 
-        if (currentState != mainMenu)
+        if (currentState != handRayMenu)
         {
             currentState.SetActive(true);
         }
@@ -116,6 +120,11 @@ public class Menu3 : MonoBehaviour
             CanvasObject.enabled = true;
         }
 
+    }
+
+    public void OnMainMenu()
+    {
+        switchMenu(MenuStates.Main);
     }
 
     public void OnAssistance()
@@ -135,14 +144,19 @@ public class Menu3 : MonoBehaviour
 
     public void OnExitMenu()
     {
-        CanvasObject.enabled = !CanvasObject.enabled;
-        //mainMenu.SetActive(false);
+        OnBackTohandRayMenu();
+        CanvasObject.enabled = false;
         FirstPerson.ControllerPause();
+        menuActive = false;
+
+        //CanvasObject.enabled = !CanvasObject.enabled;
+        //handRayMenu.SetActive(false);
+        //FirstPerson.ControllerPause();
     }
 
-    public void OnBackToMainMenu()
+    public void OnBackTohandRayMenu()
     {
-        switchMenu(MenuStates.Main);
+        switchMenu(MenuStates.HandRay);
     }
 
     public void OnPopularExhibits()
@@ -155,12 +169,14 @@ public class Menu3 : MonoBehaviour
         switchMenu(MenuStates.Navigation);
     }
 
+    
     public void OnCoronaLisa()
     {
         guidanceSystem.SetActive(true);
-        frameSystem.SetActive(true);
-        switchMenu(MenuStates.Main);
-        CanvasObject.enabled = !CanvasObject.enabled;
-        FirstPerson.ControllerPause();
+        //frameSystem.SetActive(true);
+        //switchMenu(MenuStates.HandRay);
+        //CanvasObject.enabled = !CanvasObject.enabled;
+        //FirstPerson.ControllerPause();
     }
+    
 }
