@@ -11,6 +11,10 @@ public class Table : MonoBehaviour
 	private bool glassesAreOn;
 
 	public GameObject initialPage;
+
+
+	public GameObject VRGoggles;
+
 	public Canvas mainMenu;
 
 	//private GameObject txGO;
@@ -39,6 +43,8 @@ public class Table : MonoBehaviour
 
 			//Canvas mainMenu = initialPage.GetComponent<Canvas>();
 			mainMenu.enabled = true;
+
+			VRGoggles.SetActive(false);
 
 			//initialPage.SetActive(true);
 			FirstPerson.ControllerPause();

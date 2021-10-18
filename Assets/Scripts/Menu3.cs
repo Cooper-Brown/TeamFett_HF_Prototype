@@ -7,7 +7,7 @@ public class Menu3 : MonoBehaviour
     public FirstPersonAIO FirstPerson;
     private Canvas CanvasObject;
 
-    public enum MenuStates { HandRay, Main, Assistance, Navigation, Settings, PopularExhibits };
+    public enum MenuStates { HandRay, Main, Assistance, Navigation, Settings, PopularExhibits, AssistanceRequested };
     private GameObject currentState;
 
 
@@ -17,10 +17,13 @@ public class Menu3 : MonoBehaviour
     public GameObject navigationMenu;
     public GameObject settingsMenu;
     public GameObject popularExhibitsMenu;
+    public GameObject assistanceRequestMenu;
 
     public GameObject guidanceSystem;
     //public GameObject frameSystem;
     public GameObject VRTableGO;
+
+    
 
     private Table VRTable;
 
@@ -94,6 +97,9 @@ public class Menu3 : MonoBehaviour
                 break;
             case MenuStates.PopularExhibits:
                 newState = popularExhibitsMenu;
+                break;
+            case MenuStates.AssistanceRequested:
+                newState = assistanceRequestMenu;
                 break;
             default:
                 newState = handRayMenu;
@@ -177,6 +183,11 @@ public class Menu3 : MonoBehaviour
         //switchMenu(MenuStates.HandRay);
         //CanvasObject.enabled = !CanvasObject.enabled;
         //FirstPerson.ControllerPause();
+    }
+
+    public void OnAssistanceRequest()
+    {
+        switchMenu(MenuStates.AssistanceRequested);
     }
     
 }
