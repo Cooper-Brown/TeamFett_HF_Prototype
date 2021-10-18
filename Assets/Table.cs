@@ -42,11 +42,13 @@ public class Table : MonoBehaviour
 			//CameraFade.Color = Color.black;
 
 			//Canvas mainMenu = initialPage.GetComponent<Canvas>();
-			mainMenu.enabled = true;
+			mainMenu.enabled = false;
+
+			//ControlsMenu.SetActive(true);
 
 			VRGoggles.SetActive(false);
 
-			//initialPage.SetActive(true);
+			initialPage.SetActive(true);
 			FirstPerson.ControllerPause();
 
 

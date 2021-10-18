@@ -7,7 +7,7 @@ public class Menu3 : MonoBehaviour
     public FirstPersonAIO FirstPerson;
     private Canvas CanvasObject;
 
-    public enum MenuStates { HandRay, Main, Assistance, Navigation, Settings, PopularExhibits, AssistanceRequested };
+    public enum MenuStates { HandRay, Main, Assistance, Navigation, Settings, PopularExhibits, AssistanceRequested, Controls };
     private GameObject currentState;
 
 
@@ -18,12 +18,14 @@ public class Menu3 : MonoBehaviour
     public GameObject settingsMenu;
     public GameObject popularExhibitsMenu;
     public GameObject assistanceRequestMenu;
+    public GameObject controlsMenu;
 
     public GameObject guidanceSystem;
+    public GameObject paintingInfo;
     //public GameObject frameSystem;
     public GameObject VRTableGO;
 
-    
+    public GameObject toDisableOnT;
 
     private Table VRTable;
 
@@ -47,10 +49,14 @@ public class Menu3 : MonoBehaviour
         if (Input.GetButtonDown("Menu") && VRTable.glassesOn() && !menuActive)
         {
             menuActive = true;
+
+            
+
             OnBackTohandRayMenu();
             CanvasObject.enabled = true;
-            //menuActive = !menuActive;
-            //handRayMenu.SetActive(menuActive);
+
+                //menuActive = !menuActive;
+                //handRayMenu.SetActive(menuActive);
             FirstPerson.ControllerPause();
             
         }
@@ -61,6 +67,7 @@ public class Menu3 : MonoBehaviour
             CanvasObject.enabled = false;
             FirstPerson.ControllerPause();
             menuActive = false;
+            toDisableOnT.SetActive(false);
         }
 
         if (Input.GetButtonDown("FreeLook"))
@@ -71,6 +78,15 @@ public class Menu3 : MonoBehaviour
         if (Input.GetButtonUp("FreeLook"))
         {
             FirstPerson.ControllerPause();
+        }
+
+        if (CanvasObject.enabled)
+        {
+            paintingInfo.SetActive(true);
+        }
+        else
+        {
+            paintingInfo.SetActive(false);
         }
     }
 
@@ -100,6 +116,9 @@ public class Menu3 : MonoBehaviour
                 break;
             case MenuStates.AssistanceRequested:
                 newState = assistanceRequestMenu;
+                break;
+            case MenuStates.Controls:
+                newState = controlsMenu;
                 break;
             default:
                 newState = handRayMenu;
@@ -155,6 +174,17 @@ public class Menu3 : MonoBehaviour
         FirstPerson.ControllerPause();
         menuActive = false;
 
+        if (currentState != handRayMenu)
+        {
+            currentState.SetActive(false);
+        }
+        else
+        {
+            CanvasObject.enabled = false;
+        }
+
+        controlsMenu.SetActive(false);
+
         //CanvasObject.enabled = !CanvasObject.enabled;
         //handRayMenu.SetActive(false);
         //FirstPerson.ControllerPause();
@@ -175,10 +205,16 @@ public class Menu3 : MonoBehaviour
         switchMenu(MenuStates.Navigation);
     }
 
-    
+    public void OnOpenControls()
+    {
+        switchMenu(MenuStates.Controls);
+    }
+
+
     public void OnCoronaLisa()
     {
         guidanceSystem.SetActive(true);
+        OnExitMenu();
         //frameSystem.SetActive(true);
         //switchMenu(MenuStates.HandRay);
         //CanvasObject.enabled = !CanvasObject.enabled;
